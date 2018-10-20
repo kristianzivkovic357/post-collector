@@ -61,7 +61,7 @@ function formatForDB (postData) {
 
       const dbReadyPost = {
         id_post: singlePost.id,
-        data: 'ccc',
+        data: JSON.stringify(singlePost.data),
         social_network_id: postData[i].networkId,
         access_token_id: postData[i].accessTokenId
       };
