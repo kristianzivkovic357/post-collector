@@ -35,15 +35,17 @@ async function getNewPosts (AccessTokens) {
   for (let i in AccessTokens) {
     const networkName = AccessTokens[i].get('SocialNetwork').get('name');
 
-    let accessToken = AccessTokens[i].get('access_token');
-    let accessTokenId = AccessTokens[i].get('id');
+    const accessToken = AccessTokens[i].get('access_token');
+    const accessTokenId = AccessTokens[i].get('id');
+    const userId = AccessTokens[i].get('user_id');
 
     const newPosts = await networks[networkName].getNewPosts(accessTokenId, accessToken);
 
     const postData = {
       accessTokenId: accessTokenId,
       networkId: enums.SocialNetwork[networkName],
-      posts: newPosts
+      posts: newPosts,
+      userId: userId
     };
 
     allNewPosts.push(postData);
@@ -63,7 +65,8 @@ function formatForDB (postData) {
         id_post: singlePost.id,
         data: JSON.stringify(singlePost.data),
         social_network_id: postData[i].networkId,
-        access_token_id: postData[i].accessTokenId
+        access_token_id: postData[i].accessTokenId,
+        user_id: postData[i].userId
       };
 
       dbArray.push(dbReadyPost);
@@ -84,4 +87,5 @@ async function main () {
   console.log('Inserted ' + formattedPost.length + ' posts');
 }
 
+main();
 setInterval(main, constants.postRefreshInterval);

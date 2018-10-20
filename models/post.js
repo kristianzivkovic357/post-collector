@@ -18,6 +18,10 @@ module.exports = (sequelize, DataTypes) => {
     social_network_id: {
       type: DataTypes.BIGINT.UNSIGNED,
       allowNull: false
+    },
+    user_id: {
+      type: DataTypes.BIGINT.UNSIGNED,
+      allowNull: false
     }
   }, {
     underscored: true,
