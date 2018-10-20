@@ -6,17 +6,14 @@ module.exports = {
   getLastKnownPostId
 };
 
-async function getLastKnownPostId (accessToken) {
-  const result = await db.AccessToken.findAll({
+async function getLastKnownPostId (accessTokenId) {
+  const result = await db.Post.findOne({
     where: {
-      access_token: accessToken
+      access_token_id: accessTokenId
     },
-    include: [{
-      model: db.Post,
-      required: true
-    }]
+    order: [['access_token_id', 'DESC']],
+    limit: 1
   });
-  console.log(result);
 
-  return result;
+  return result && result.get('id_post');
 }

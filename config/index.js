@@ -34,14 +34,7 @@ const config = {
     database: process.env.DB_DATABASE
   },
   constants: { // todo: authOptions?
-    passwordMissesAllowed: 10,
-    totpMissesAllowed: 10,
-    totpChangeWindowMins: 1440, // 1 day
-    passwordChangeWindowMins: 1440, // 1 day
-    totpWindow: 1,
-    timeIntervalMS: 31536000000, // 1 year
-    coinMarketCapUrl: 'https://api.coinmarketcap.com/v2/ticker/',
-    coinCapTTL: 2000
+    postRefreshInterval: 30000 // 30 sec
   }
 };
 
