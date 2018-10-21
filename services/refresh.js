@@ -10,8 +10,8 @@ module.exports = {
 };
 
 const networks = {
-  INSTAGRAM: require('./instagram')
-
+  INSTAGRAM: require('./instagram'),
+  LINKEDIN: require('./linkedin')
 };
 
 async function getAccessTokens () {
